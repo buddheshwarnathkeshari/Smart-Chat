@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.PhoneLoginActivity"
+    android:gravity="center">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:id="@+id/et_mobile"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="17dp"
+        android:padding="8dp"
+        android:hint="Mobile number..."
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:drawableStart="@drawable/phone"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:background="@drawable/input"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+android:visibility="gone"
+        android:id="@+id/et_otp"
+        android:layout_alignParentStart="true"
+        android:layout_marginHorizontal="17dp"
+        android:padding="8dp"
+        android:layout_below="@id/et_mobile"
+        android:layout_marginTop="17dp"
+        android:hint="OTP..."
+        android:textAllCaps="false"
+        android:textSize="15sp"
+        android:drawableStart="@drawable/password"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:background="@drawable/input"
+        />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_send_otp"
+        android:text="Send OTP"
+        android:background="@drawable/button"
+        android:layout_marginHorizontal="17dp"
+        android:textAllCaps="false"
+
+        android:textColor="@android:color/background_light"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:layout_below="@id/et_otp"
+        android:layout_marginTop="20dp"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_verify"
+        android:text="Verify"
+        android:visibility="gone"
+        android:background="@drawable/button"
+        android:layout_marginHorizontal="17dp"
+        android:textAllCaps="false"
+
+        android:textColor="@android:color/background_light"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:layout_below="@id/btn_send_otp"
+        android:layout_marginTop="4dp"/>
+
+
+
+</RelativeLayout>

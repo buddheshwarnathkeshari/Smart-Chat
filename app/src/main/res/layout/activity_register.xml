@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.RegisterActivity">
+
+
+    <ScrollView
+        android:layout_above="@id/btn_using_phone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:id="@+id/img_register"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/signup_photo"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_email"
+                android:layout_below="@id/img_register"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/input"
+                android:paddingVertical="4dp"
+                android:inputType="textEmailAddress"
+                android:hint="Email...."
+                android:drawableStart="@drawable/email"
+                android:layout_marginTop="25dp"
+                android:layout_marginHorizontal="17dp"/>
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/et_pass"
+                android:layout_below="@id/et_email"
+                android:layout_alignParentStart="true"
+                android:background="@drawable/input"
+                android:paddingVertical="4dp"
+                android:inputType="textPassword"
+                android:hint="Password...."
+                android:drawableStart="@drawable/password"
+                android:layout_marginTop="25dp"
+                android:layout_marginHorizontal="17dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btn_register"
+                android:layout_marginTop="10dp"
+                android:layout_marginHorizontal="17dp"
+                android:layout_below="@id/et_pass"
+                android:text="Register"
+                android:textAllCaps="false"
+                android:textSize="24sp"
+                android:textColor="#ffffff"
+                android:background="@drawable/button"/>
+
+
+            <TextView
+                android:id="@+id/tv_already"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/btn_register"
+                android:gravity="center"
+                android:text="Already have an account?"
+                android:textColor="@color/colorPrimaryDark"/>
+        </RelativeLayout>
+    </ScrollView>
+
+
+    <Button
+        android:id="@+id/btn_using_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:text="Register using phone?"
+        android:textStyle="bold"
+
+        android:onClick="usingPhone"
+        android:layout_margin="15dp"
+        android:background="@drawable/button"
+        android:drawableStart="@drawable/phone"
+        android:textColor="#ffffff"
+        android:textAllCaps="false"/>
+
+</RelativeLayout>

@@ -1,0 +1,85 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
+
+    defaultConfig {
+        applicationId "com.buddheshwar.smartchat"
+        minSdkVersion 19
+        targetSdkVersion 30
+        versionCode 1
+        versionName "1.0"
+
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+
+    implementation platform('com.google.firebase:firebase-bom:26.1.1')
+    implementation 'com.google.firebase:firebase-analytics'
+
+    implementation 'com.google.firebase:firebase-auth:19.4.0'
+    implementation 'com.google.firebase:firebase-database:19.4.0'
+    implementation 'com.google.firebase:firebase-storage:19.2.0'
+
+
+    implementation 'com.google.firebase:firebase-core:17.2.1'
+    implementation 'com.google.firebase:firebase-messaging:20.0.0'
+
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
+
+
+
+    implementation 'androidx.browser:browser:1.2.0'
+
+    implementation 'com.theartofdev.edmodo:android-image-cropper:2.7.+'
+
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:22.2.0'
+
+
+
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+
+    implementation 'com.firebaseui:firebase-ui-database:4.1.0'
+
+
+
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.1.0'
+    implementation 'com.google.android.material:material:1.2.1'
+    implementation 'com.google.android.gms:play-services-vision:20.1.2'
+
+
+    implementation 'com.google.firebase:firebase-ml-natural-language-smart-reply-model:20.0.4'
+    implementation 'com.google.firebase:firebase-ml-natural-language:21.0.1'
+
+
+}

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:visibility="gone"
+        android:id="@+id/message_profile_image"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/profile_image"/>
+
+
+    <!--<TextView
+        android:id="@+id/receiver_message_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginVertical="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/message_profile_image"
+        android:background="@drawable/receiver_message_layout"
+        android:padding="10dp"
+        android:textColor="#000000"
+        android:textSize="14dp"
+        android:text="Hello, User"/>-->
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_receiver"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginVertical="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/message_profile_image"
+        android:background="@drawable/receiver_message_layout">
+
+
+        <TextView
+            android:id="@+id/receiver_message_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="1dp"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/receiver_message_layout"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textSize="14dp"
+            android:text="0"/>
+
+        <TextView
+            android:id="@+id/receiver_message_time"
+            android:layout_width="50dp"
+            android:gravity="right"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@+id/receiver_message_text"
+            android:textColor="#474747"
+            android:textSize="8dp"
+            android:text="04:40 PM"/>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_sender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:gravity="right"
+        android:layout_marginRight="10dp"
+        android:layout_marginVertical="1dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/sender_message_layout">
+
+
+        <TextView
+            android:id="@+id/sender_message_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="1dp"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/sender_message_layout"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textSize="14dp"
+            android:text="00"/>
+
+        <TextView
+            android:id="@+id/sender_message_time"
+            android:layout_width="50dp"
+            android:gravity="right"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_below="@+id/sender_message_text"
+            android:textColor="#474747"
+            android:textSize="8dp"
+            android:text="04:40 PM"/>
+
+    </RelativeLayout>
+
+
+    <!-- <TextView
+         android:id="@+id/sender_message_text"
+         android:layout_width="wrap_content"
+         android:layout_marginRight="10dp"
+         android:layout_marginLeft="60dp"
+         android:layout_height="wrap_content"
+ android:layout_marginVertical="1dp"
+         android:layout_alignParentTop="true"
+         android:background="@drawable/sender_message_layout"
+         android:padding="10dp"
+         android:textColor="#000000"
+         android:layout_alignParentRight="true"
+         android:textSize="14dp"
+         android:text="Hello, User"/>
+ -->
+
+    <ImageView
+        android:id="@+id/img_sender_view"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/file"
+        android:visibility="gone"
+        android:scaleType="centerCrop"
+        android:layout_margin="5dp"/>
+
+
+    <ImageView
+        android:id="@+id/img_receiver_view"
+        android:layout_width="150dp"
+        android:visibility="gone"
+        android:layout_height="150dp"
+        android:layout_toRightOf="@id/message_profile_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/file"
+        android:layout_margin="5dp"/>
+
+</RelativeLayout>

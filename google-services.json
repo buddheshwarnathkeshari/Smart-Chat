@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "468829442140",
+    "project_id": "smart-chat-df8b9",
+    "storage_bucket": "smart-chat-df8b9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468829442140:android:3947cff82744a947019699",
+        "android_client_info": {
+          "package_name": "com.buddheshwar.smartchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468829442140-132kbhe1r5bggsrnnetht5l46tcnjk43.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.buddheshwar.smartchat",
+            "certificate_hash": "6f3b76b90d918ead31c883dd95e5a82c4947dfb3"
+          }
+        },
+        {
+          "client_id": "468829442140-qnjqf08hgsf259160iru6n84dvdl8s32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqaw-r-L4RnewPgA-zixWeMWRmbVSIqAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468829442140-qnjqf08hgsf259160iru6n84dvdl8s32.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
