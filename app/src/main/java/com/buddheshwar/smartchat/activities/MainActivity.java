@@ -73,8 +73,8 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser currentUser=firebaseAuth.getCurrentUser();
         if(currentUser==null){
-           // SendUserToLoginActivity();
-            SendUserToPhoneLoginActivity();
+            SendUserToLoginActivity();
+            //SendUserToPhoneLoginActivity();
         }
         else{
             updateUserState("online");
@@ -130,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
 
         Intent settingIntent=new Intent(MainActivity.this,SettingActivity.class);
         startActivity(settingIntent);
+
+        overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
         finish();
 
     }
@@ -139,6 +141,8 @@ public class MainActivity extends AppCompatActivity {
         Intent loginIntent=new Intent(MainActivity.this,LoginActivity.class);
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(loginIntent);
+
+        overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
         finish();
     }
     private void SendUserToPhoneLoginActivity() {
@@ -146,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
         Intent loginIntent=new Intent(MainActivity.this,PhoneLoginActivity.class);
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(loginIntent);
+        overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
         finish();
     }
 
@@ -177,6 +182,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.op_setting:
                 startActivity(new Intent(MainActivity.this,SettingActivity.class));
+
+                overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
                 break;
 
             case R.id.op_create_group:
@@ -190,6 +197,8 @@ public class MainActivity extends AppCompatActivity {
     private void sendUserToFFActivity() {
         Intent intent=new Intent(MainActivity.this,FindFriendActivity.class);
         startActivity(intent);
+
+        overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
     }
 
     private void requestNewGroup() {
@@ -240,6 +249,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void sendUserToLoginActivity() {
         startActivity(new Intent(MainActivity.this,LoginActivity.class));
+
+        overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
     }
 
 

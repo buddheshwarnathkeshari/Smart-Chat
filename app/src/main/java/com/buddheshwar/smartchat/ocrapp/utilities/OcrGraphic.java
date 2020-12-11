@@ -35,6 +35,7 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
     private int mId;
 
     private static final int TEXT_COLOR = Color.WHITE;
+   // private static final int TEXT_COLOR = Color.parseColor("#226E6E");
 
     private static Paint sRectPaint;
     private static Paint sTextPaint;
@@ -120,3 +121,37 @@ public class OcrGraphic extends GraphicOverlay.Graphic {
         }
     }
 }
+
+
+
+
+
+
+
+//                hello
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

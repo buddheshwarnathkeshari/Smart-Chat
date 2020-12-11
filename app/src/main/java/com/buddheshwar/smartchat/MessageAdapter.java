@@ -180,7 +180,8 @@ public class MessageAdapter  extends RecyclerView.Adapter<MessageAdapter.Message
                                     case 1:
                                         Intent intent=new Intent(Intent.ACTION_VIEW, Uri.parse(userMessagesList.get(position).getMessage()));
                                         holder.itemView.getContext().startActivity(intent);
-                                        break;
+
+                                         break;
                                     case 2:
 
                                         deleteMessageForEveryone(position,holder);

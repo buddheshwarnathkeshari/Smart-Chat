@@ -422,6 +422,7 @@ public class CameraSource {
                     // SurfaceHolder.  If the developer doesn't want to display a preview we use a
                     // SurfaceTexture if we are running at least Honeycomb.
 
+
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
                         mCamera.setPreviewTexture(null);
 

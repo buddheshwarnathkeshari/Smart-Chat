@@ -11,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.buddheshwar.smartchat.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,11 +32,15 @@ public class PhoneLoginActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     String mVerificationId;
     PhoneAuthProvider.ForceResendingToken mResendToken;
+
+    LottieAnimationView animationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone_login);
 
+        animationView=findViewById(R.id.loading_animation);
+        animationView.setVisibility(View.GONE);
         btnSendOtp=findViewById(R.id.btn_send_otp);
         btnVerify=findViewById(R.id.btn_verify);
         etMob=findViewById(R.id.et_mobile);
@@ -45,6 +50,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
         btnSendOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                btnSendOtp.requestFocus();
                 String phoneNumber=etMob.getText().toString();
                 if(TextUtils.isEmpty(phoneNumber))
                 {
@@ -54,6 +60,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
 
                 try {
 
+                    animationView.setVisibility(View.VISIBLE);
                     PhoneAuthOptions options =
                             PhoneAuthOptions.newBuilder(firebaseAuth)
                                     .setPhoneNumber(phoneNumber)       // Phone number to verify
@@ -66,6 +73,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
                     Toast.makeText(PhoneLoginActivity.this, ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
+
             }
         });
 
@@ -74,12 +82,15 @@ public class PhoneLoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 etOTP.setVisibility(View.VISIBLE);
                 btnVerify.setVisibility(View.VISIBLE);
+                animationView.setVisibility(View.GONE);
                 String otpEntered=etOTP.getText().toString();
                 if(TextUtils.isEmpty(otpEntered)){
                     Toast.makeText(PhoneLoginActivity.this, "Enter OTP", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     try {
+
+                        animationView.setVisibility(View.VISIBLE);
                         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, otpEntered);
                         signInWithPhoneAuthCredential(credential);
 
@@ -95,6 +106,8 @@ public class PhoneLoginActivity extends AppCompatActivity {
             @Override
             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
                 signInWithPhoneAuthCredential(phoneAuthCredential);
+
+                animationView.setVisibility(View.GONE);
             }
 
             @Override
@@ -104,6 +117,7 @@ public class PhoneLoginActivity extends AppCompatActivity {
                 etOTP.setVisibility(View.GONE);
                 etMob.setVisibility(View.VISIBLE);
                 btnSendOtp.setVisibility(View.VISIBLE);
+                animationView.setVisibility(View.GONE);
                 Toast.makeText(PhoneLoginActivity.this, "Invalid...", Toast.LENGTH_SHORT).show();
             }
 
@@ -121,6 +135,8 @@ public class PhoneLoginActivity extends AppCompatActivity {
                 mResendToken = token;
 
                 Toast.makeText(PhoneLoginActivity.this, "OTP sent..", Toast.LENGTH_SHORT).show();
+
+                animationView.setVisibility(View.GONE);
 
                 // ...
 
@@ -154,6 +170,8 @@ public class PhoneLoginActivity extends AppCompatActivity {
     private void sendUserToMain() {
         Intent intent=new Intent(PhoneLoginActivity.this,MainActivity.class);
         startActivity(intent);
+
+        overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
         finish();
     }
 }

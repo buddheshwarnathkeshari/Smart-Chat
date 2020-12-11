@@ -97,56 +97,6 @@ public final class OcrCaptureActivity extends AppCompatActivity {
         super.onCreate(icicle);
         setContentView(R.layout.ocr_capture);
 
-       /* imgFlash = findViewById(R.id.img_flash);
-
-        if(Build.VERSION.SDK_INT>Build.VERSION_CODES.M) {
-            cameraManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-
-            try {
-                cameraID = cameraManager.getCameraIdList()[0];
-            } catch (CameraAccessException e) {
-                e.printStackTrace();
-            }
-
-
-
-            imgFlash.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    if (!getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH)) {
-                        Toast.makeText(getApplicationContext(), "Flash light not available in your device", Toast.LENGTH_SHORT).show();
-                        return;
-                    }
-
-                    if (!flashOn) {
-
-                        try {
-                            Toast.makeText(OcrCaptureActivity.this, "hello", Toast.LENGTH_SHORT).show();
-                            cameraManager.setTorchMode(cameraID, true);
-                        }
-                        catch (Exception ignored){
-
-                        }
-
-                        flashOn = true;
-                    } else {
-                        try {
-                            cameraManager.setTorchMode(cameraID, false);
-                        }
-                        catch (Exception e){
-
-                        }
-
-                        flashOn = false;
-                    }
-                }
-            });
-
-        }
-        else{
-            imgFlash.setVisibility(View.GONE);
-        }*/
         mPreview = (CameraSourcePreview) findViewById(R.id.preview);
         mGraphicOverlay = (GraphicOverlay<OcrGraphic>) findViewById(R.id.graphicOverlay);
 

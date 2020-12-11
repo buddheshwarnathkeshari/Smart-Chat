@@ -122,6 +122,8 @@ FirebaseAuth firebaseAuth;
                                     intent.putExtra("IMAGE", finalImage);
                                     startActivity(intent);
 
+                                    getActivity().overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
+
                                 }
                             });
                         }

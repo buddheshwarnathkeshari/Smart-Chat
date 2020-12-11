@@ -69,6 +69,7 @@ usersRef= FirebaseDatabase.getInstance().getReference().child("Users");
                         i.putExtra("UID",visit_user_id);
                         startActivity(i);
 
+                        overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
 
 
                     }

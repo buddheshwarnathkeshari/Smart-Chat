@@ -18,11 +18,6 @@ public class TabsAccessorAdapter extends FragmentPagerAdapter {
             case 0:
                 ChatFragment chatFragment=new ChatFragment();
                 return chatFragment;
-
-        /*    case 1:
-                GroupFragment groupFragment=new GroupFragment();
-                return groupFragment;*/
-
             case 1:
                 ContactsFragment contactsFragment=new ContactsFragment();
                 return  contactsFragment;

@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,7 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
+import android.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -58,13 +59,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ChatActivity extends AppCompatActivity {
 
-    boolean start=true;
     String messageReceiverId,messageReceiverName,messageReceiverImage,messageSenderUid,saveCurrentTime,saveCurrentDate;
     TextView tvName,tvLastSeen;
     CircleImageView imgProfile;
@@ -260,11 +261,46 @@ public class ChatActivity extends AppCompatActivity {
         imgBtnScanText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), OcrCaptureActivity.class);
-                intent.putExtra(OcrCaptureActivity.AutoFocus, true);
-                intent.putExtra(OcrCaptureActivity.UseFlash, false);
-                start=false;
-                startActivityForResult(intent, RC_OCR_CAPTURE);
+
+                CharSequence options[]=new CharSequence[]{
+
+                        "Speak",
+                        "Scan"
+                };
+
+                AlertDialog.Builder builder=new AlertDialog.Builder(ChatActivity.this);
+                builder.setTitle("Get Text");
+
+                builder.setItems(options, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        if(i==0){
+                            Intent intent =new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                            intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+                            if(intent.resolveActivity(getPackageManager())!=null)
+                            {
+                                startActivityForResult(intent,1001);
+                            }
+                            else
+                            {
+                                Toast.makeText(ChatActivity.this,"your device does not support this feature",Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                        else if(i==1){
+
+                            Intent intent = new Intent(getApplicationContext(), OcrCaptureActivity.class);
+                            intent.putExtra(OcrCaptureActivity.AutoFocus, true);
+                            intent.putExtra(OcrCaptureActivity.UseFlash, false);
+
+                            startActivityForResult(intent, RC_OCR_CAPTURE);
+                        }
+                    }
+                });
+
+                builder.show();
+
+
             }
         });
         imgBtnScanText.setOnLongClickListener(new View.OnLongClickListener() {
@@ -274,7 +310,7 @@ public class ChatActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), OcrCaptureActivity.class);
                 intent.putExtra(OcrCaptureActivity.AutoFocus, true);
                 intent.putExtra(OcrCaptureActivity.UseFlash, true);
-                start=false;
+
                 startActivityForResult(intent, RC_OCR_CAPTURE);
                 return true;
             }
@@ -322,16 +358,6 @@ public class ChatActivity extends AppCompatActivity {
 
 
         }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-
-        Toast.makeText(this, "OnStart", Toast.LENGTH_SHORT).show();
-      //  if(start)
-
     }
 
     private void init() {
@@ -389,15 +415,20 @@ public class ChatActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(requestCode == RC_OCR_CAPTURE) {
-            start=false;
+        if(requestCode==1001){
+            if(resultCode==RESULT_OK&&data!=null)
+            {
+                ArrayList<String> res=data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                etMessage.setText(res.get(0));
+            }
+        }
+        else if(requestCode == RC_OCR_CAPTURE) {
+
             if (resultCode == CommonStatusCodes.SUCCESS) {
                 if (data != null) {
                     String text = data.getStringExtra(OcrCaptureActivity.TextBlockObject);
-                    /*statusMessage.setText(R.string.ocr_success);
-                    textValue.setText(text);*/
                     etMessage.setText(text);
-                    Log.d(TAG, "Text read: " + text);
+
                 } else {
                     Toast.makeText(this, R.string.ocr_failure, Toast.LENGTH_SHORT).show();
                     //statusMessage.setText(R.string.ocr_failure);
@@ -406,11 +437,11 @@ public class ChatActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(this, ""+String.format(getString(R.string.ocr_error),
                         CommonStatusCodes.getStatusCodeString(resultCode)), Toast.LENGTH_SHORT).show();
-               // statusMessage.setText();
+
             }
         }
         else if(requestCode==438 &&resultCode==RESULT_OK  && data!=null &&data.getData()!=null){
-            start=false;
+
 
             //TODO: loading bar
             fileUri=data.getData();
@@ -501,7 +532,6 @@ public class ChatActivity extends AppCompatActivity {
             }
             else {
                 StorageReference storageReference= FirebaseStorage.getInstance().getReference().child("Image Files");
-
 
 
                 String messageSenderRef="Messages/"+ messageSenderUid+"/"+messageReceiverId;

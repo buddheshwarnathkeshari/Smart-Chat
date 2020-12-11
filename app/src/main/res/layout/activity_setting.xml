@@ -12,6 +12,7 @@
 
     </include>
 
+
     <de.hdodenhof.circleimageview.CircleImageView
 
         android:layout_width="250dp"
@@ -23,6 +24,19 @@
         app:civ_border_width="2dp"
         android:src="@drawable/profile_image"
         app:civ_border_color="@color/colorPrimary"/>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/loading_animation"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_centerHorizontal="true"
+
+        android:layout_alignTop="@+id/profile_image"
+        android:layout_alignBottom="@id/profile_image"
+
+        app:lottie_rawRes="@raw/loading_animation"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
 
     <EditText
         android:layout_width="match_parent"

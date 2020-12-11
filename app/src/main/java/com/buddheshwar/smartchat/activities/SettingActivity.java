@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.buddheshwar.smartchat.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -47,6 +48,7 @@ public class SettingActivity extends AppCompatActivity {
     private static final int gallaryInt=1;
     String image;
 
+    LottieAnimationView animationView;
     Toolbar settingToolbar;
 
     @Override
@@ -54,6 +56,9 @@ public class SettingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
 
+
+        animationView=findViewById(R.id.loading_animation);
+        animationView.setVisibility(View.GONE);
         init();
 
 
@@ -104,8 +109,11 @@ public class SettingActivity extends AppCompatActivity {
 
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
+
+            animationView.setVisibility(View.VISIBLE);
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if(resultCode==RESULT_OK){
+
 
                 Uri uri=result.getUri();
                 StorageReference filepath=userProfileImageReference.child(currentUserId+".jpg");
@@ -134,6 +142,8 @@ public class SettingActivity extends AppCompatActivity {
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
+
+                                            animationView.setVisibility(View.GONE);
                                             if(task.isSuccessful()){
                                                 Toast.makeText(SettingActivity.this, "Profile Updated Successfullly", Toast.LENGTH_SHORT).show();
                                                 Picasso.get().load(myUrl).placeholder(R.drawable.profile_image).into(imgProfile);
@@ -188,6 +198,7 @@ public class SettingActivity extends AppCompatActivity {
     }
 
     private void update() {
+
         String name=etName.getText().toString();
         String status=etStatus.getText().toString();
 
@@ -200,6 +211,7 @@ public class SettingActivity extends AppCompatActivity {
             return;
         }
 
+        animationView.setVisibility(View.VISIBLE);
         HashMap<String,Object> profileMap=new HashMap<>();
         profileMap.put("uid",currentUserId);
         profileMap.put("name",name);
@@ -212,6 +224,8 @@ public class SettingActivity extends AppCompatActivity {
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
+
+                        animationView.setVisibility(View.GONE);
                         if(task.isSuccessful()){
                             Toast.makeText(SettingActivity.this, "Profile updated ", Toast.LENGTH_SHORT).show();
                             sendUserToMain();
@@ -230,6 +244,8 @@ public class SettingActivity extends AppCompatActivity {
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         startActivity(i);
+
+        overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
     }
 
     private void init() {

@@ -41,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent=new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(intent);
+
+                overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
             }
         });
 
@@ -55,6 +57,8 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i=new Intent(LoginActivity.this, PhoneLoginActivity.class);
                 startActivity(i);
+
+                overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
                 finish();
             }
         });
@@ -110,6 +114,8 @@ public class LoginActivity extends AppCompatActivity {
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         startActivity(i);
+
+        overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
     }
 
     private void init() {
@@ -130,5 +136,7 @@ public class LoginActivity extends AppCompatActivity {
 
         Intent loginIntent=new Intent(LoginActivity.this,MainActivity.class);
         startActivity(loginIntent);
+
+        overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
     }
 }

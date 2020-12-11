@@ -44,6 +44,8 @@ public class RegisterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+
+                overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
             }
         });
 
@@ -117,6 +119,8 @@ public class RegisterActivity extends AppCompatActivity {
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
         startActivity(i);
+
+        overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
     }
 
     private void init() {
@@ -132,6 +136,8 @@ public class RegisterActivity extends AppCompatActivity {
     public void sendUserToLogin(){
 
         startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+
+        overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
     }
 
 
@@ -139,6 +145,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         Intent i=new Intent(RegisterActivity.this, PhoneLoginActivity.class);
         startActivity(i);
+
+        overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
 
         finish();
     }
