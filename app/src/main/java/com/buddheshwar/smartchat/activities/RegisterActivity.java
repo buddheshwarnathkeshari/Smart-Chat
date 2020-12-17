@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.buddheshwar.smartchat.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,12 +32,15 @@ public class RegisterActivity extends AppCompatActivity {
     private ProgressDialog loadingBar;
 
     DatabaseReference rootReference;
+    LottieAnimationView animationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        animationView=findViewById(R.id.loading_animation);
+        animationView.setVisibility(View.GONE);
 
         mAuth=FirebaseAuth.getInstance();
         init();
@@ -71,6 +75,9 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
+        animationView.setVisibility(View.VISIBLE);
+
+
         /*loadingBar.setTitle("Creating New Account");
         loadingBar.setMessage("Please wait till account creation...");
         loadingBar.setCanceledOnTouchOutside(true);
@@ -89,6 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
+                                            animationView.setVisibility(View.GONE);
 
                                         }
                                     });
@@ -96,13 +104,17 @@ public class RegisterActivity extends AppCompatActivity {
                             String currentUserId=mAuth.getCurrentUser().getUid();
                             rootReference.child("Users").child(currentUserId).setValue("");
                             Toast.makeText(RegisterActivity.this, "Successfull", Toast.LENGTH_SHORT).show();
+
+                            animationView.setVisibility(View.GONE);
+
                             sendUserToMain();
 
                         }
                         else{
+
+                            animationView.setVisibility(View.GONE);
                             Toast.makeText(RegisterActivity.this, "Error: "+task.getException().toString(), Toast.LENGTH_SHORT).show();
                         }
-                        loadingBar.dismiss();
                     }
                 });
 

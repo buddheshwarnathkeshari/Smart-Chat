@@ -1,6 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 android {
+
+
+    aaptOptions {
+        noCompress "tflite"
+    }
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
 
@@ -50,8 +55,6 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging:20.0.0'
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-
-
 
 
     implementation 'androidx.browser:browser:1.2.0'

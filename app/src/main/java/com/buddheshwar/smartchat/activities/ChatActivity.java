@@ -118,9 +118,13 @@ public class ChatActivity extends AppCompatActivity {
 
                         if(message.getFrom().equals(messageSenderUid)){
                             chatHistory.add(FirebaseTextMessage.createForLocalUser(message.getMessage(),System.currentTimeMillis()));
-                            suggestReplyingMessages(chatHistory);
+                           // suggestReplyingMessages(chatHistory);
+                            llSuggestion.setVisibility(View.GONE);
+
                        } else if(message.getFrom().equals(messageReceiverId)){
                             chatHistory.add(FirebaseTextMessage.createForRemoteUser(message.getMessage(),System.currentTimeMillis(),messageReceiverId));
+
+                            llSuggestion.setVisibility(View.VISIBLE);
                             suggestReplyingMessages(chatHistory);
                         }
 

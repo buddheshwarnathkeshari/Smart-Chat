@@ -41,12 +41,21 @@
         <activity android:name="com.buddheshwar.smartchat.activities.LoginActivity" />
 
         <activity android:name="com.buddheshwar.smartchat.activities.MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
+        <activity android:name=".splash_screen"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".ImageViewerActivity"
+            />
 
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"

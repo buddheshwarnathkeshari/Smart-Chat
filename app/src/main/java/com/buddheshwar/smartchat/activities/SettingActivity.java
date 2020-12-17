@@ -57,13 +57,9 @@ public class SettingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_setting);
 
 
-        animationView=findViewById(R.id.loading_animation);
-        animationView.setVisibility(View.GONE);
         init();
 
-
         retrieveUserData();
-
 
         btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,8 +67,6 @@ public class SettingActivity extends AppCompatActivity {
                 update();
             }
         });
-
-
 
         imgProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,10 +77,6 @@ public class SettingActivity extends AppCompatActivity {
                         .setAspectRatio(1,1)
                         .start(SettingActivity.this);
 
-             /*   Intent gallaryIntent=new Intent();
-                gallaryIntent.setAction(Intent.ACTION_GET_CONTENT);
-                gallaryIntent.setType("image/*");
-                startActivityForResult(gallaryIntent,gallaryInt);*/
             }
         });
     }
@@ -96,25 +86,15 @@ public class SettingActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
 
-        if(requestCode==gallaryInt&&resultCode==RESULT_OK&&data!=null){
-            Uri uri=data.getData();
-           /* CropImage.activity()
-                    .setGuidelines(CropImageView.Guidelines.ON)
-                    .setAspectRatio(1,1)
-                    .start(this);*/
-
-
-
-        }
 
 
         if (requestCode == CropImage.CROP_IMAGE_ACTIVITY_REQUEST_CODE) {
 
-            animationView.setVisibility(View.VISIBLE);
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if(resultCode==RESULT_OK){
 
 
+                animationView.setVisibility(View.VISIBLE);
                 Uri uri=result.getUri();
                 StorageReference filepath=userProfileImageReference.child(currentUserId+".jpg");
 
@@ -250,6 +230,8 @@ public class SettingActivity extends AppCompatActivity {
 
     private void init() {
 
+        animationView=findViewById(R.id.loading_animation);
+        animationView.setVisibility(View.GONE);
         btnUpdate=findViewById(R.id.btn_set);
         etName=findViewById(R.id.et_user_name);
         etStatus=findViewById(R.id.et_status);

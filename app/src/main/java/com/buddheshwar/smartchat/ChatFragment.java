@@ -51,9 +51,6 @@ FirebaseAuth firebaseAuth;
         chatRef= FirebaseDatabase.getInstance().getReference().child("Contacts").child(currentUserId);
         usersRef=FirebaseDatabase.getInstance().getReference().child("Users");
 
-
-
-
         return view;
     }
 

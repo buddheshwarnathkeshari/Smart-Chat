@@ -12,6 +12,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.buddheshwar.smartchat.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -29,11 +30,14 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     DatabaseReference usersRef;
 
+    LottieAnimationView animationView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        animationView=findViewById(R.id.loading_animation);
+        animationView.setVisibility(View.GONE);
         init();
 
         tvRegister.setOnClickListener(new View.OnClickListener() {
@@ -78,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
             return;
         }
 
+        animationView.setVisibility(View.VISIBLE);
         firebaseAuth.signInWithEmailAndPassword(email,password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -92,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
 
+                                            animationView.setVisibility(View.GONE);
                                             if(task.isSuccessful()){
 
                                                 sendUserToMain();
@@ -101,8 +107,12 @@ public class LoginActivity extends AppCompatActivity {
                                     });
 
                         }
-                        else
+                        else{
+
+                            animationView.setVisibility(View.GONE);
                             Toast.makeText(LoginActivity.this, "Login failed"+task.getException().toString(), Toast.LENGTH_SHORT).show();
+
+                        }
                     }
                 });
 

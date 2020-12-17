@@ -170,7 +170,6 @@ public class PhoneLoginActivity extends AppCompatActivity {
     private void sendUserToMain() {
         Intent intent=new Intent(PhoneLoginActivity.this,MainActivity.class);
         startActivity(intent);
-
         overridePendingTransition(android.R.anim.accelerate_decelerate_interpolator,android.R.anim.accelerate_decelerate_interpolator);
         finish();
     }
